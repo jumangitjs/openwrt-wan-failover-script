@@ -33,6 +33,12 @@ vi /etc/failover/failover.sh
 ```
 
 Edit variables between comments **_# Begin Configuration #_** and **_# Begin Configuration #_**
+assumptions:
+physical device wan is eth1
+main wan interface is wan
+
+failover device wireless wan is wlan0
+failover wan interface is wwan
 
 ### How to start script?
 Configure your crontab file
