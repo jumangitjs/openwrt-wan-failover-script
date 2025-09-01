@@ -46,8 +46,7 @@ if [ "$RET" -le "$PACKETS" -a "$RET" -ge "$PACKETS_MEDIUM" ]; then # Check if pa
   #ifdown $WAN2
     uci set network.$WAN2.metric='1'
     uci set network.$WAN1.metric='0'
-    uci commit network
-		/etc/init.d/network reload
+    uci commit network /etc/init.d/network reload
     echo "1" > $MODE_PATH
     echo "`date`: Switched to Ethernet connection!" >> $LOG
     echo "connected" > $STATUS
@@ -57,8 +56,7 @@ else # If packets arrive on WAN1 interface
   #ifup $WAN2  
     uci set network.$WAN2.metric='0'
     uci set network.$WAN1.metric='1'
-    uci commit network
-		/etc/init.d/network reload
+    uci commit network /etc/init.d/network reload
     echo "2" > $MODE_PATH
     echo "0" > $DISC_PATH
     echo "`date`: Switched to Wireless connection!" >> $LOG
@@ -83,3 +81,4 @@ else # If packets arrive on WAN1 interface
   #ifconfig $WAN1Interface up
   sleep 10
 fi
+echo "`date`: Failover script ended." >> $LOG
